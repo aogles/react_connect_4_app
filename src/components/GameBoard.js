@@ -4,6 +4,16 @@ const Board = () => {
   const ROWS = 6;
   const COLUMNS = 7;
 
+  const [clearBoard, setClearBoard] = useState(null);
+
+  function newBoard() {
+    const clearedBoard = [];
+    for (let row = 0; row < ROWS; row++) {
+      clearedBoard[row] = Array(COLUMNS).fill(null);
+    }
+    // setClearBoard;
+  }
+
   const createBoard = () => {
     const board = [];
     for (let row = 0; row < ROWS; row++) {
@@ -11,8 +21,11 @@ const Board = () => {
     }
     return board;
   };
-
   const [board, setBoard] = useState(() => createBoard());
+
+  const handleClick = (column) => {
+    console.log(`Clicked column ${column}`);
+  };
 
   return (
     <div className="board">
@@ -25,6 +38,7 @@ const Board = () => {
           ))}
         </div>
       ))}
+      <button onClick={clearBoard}> New Game </button>
     </div>
   );
 };
