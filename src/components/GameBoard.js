@@ -32,7 +32,11 @@ const Board = () => {
       {board.map((row, rowIndex) => (
         <div className="row" key={rowIndex}>
           {row.map((cell, columnIndex) => (
-            <div className="cell" key={columnIndex}>
+            <div
+              className="cell"
+              key={columnIndex}
+              onClick={() => handleClick(columnIndex)}
+            >
               {cell}
             </div>
           ))}
