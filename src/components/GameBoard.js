@@ -3,8 +3,11 @@ import { useState } from "react";
 const Board = () => {
   const ROWS = 6;
   const COLUMNS = 7;
+  const PLAYER_ONE = "Amber";
+  const PLAYER_TWO = "Brianna";
 
   const [clearBoard, setClearBoard] = useState(null);
+  const [currentPlayer, setCurrentPlayer] = useState(PLAYER_ONE);
 
   function newBoard() {
     const clearedBoard = [];
@@ -23,8 +26,35 @@ const Board = () => {
   };
   const [board, setBoard] = useState(() => createBoard());
 
-  const handleClick = (column) => {
-    console.log(`Clicked column ${column}`);
+  const handleClick = (columnIndex, rowIndex) => {
+    console.log(`Clicked column ${columnIndex}`);
+    console.log(`Clicked row ${rowIndex}`);
+
+    // Find the lowest empty cell in the clicked column
+
+    let newRowIndex = -1;
+    for (let i = ROWS - 1; i >= 0; i--) {
+      if (board[i][columnIndex] === null) {
+        newRowIndex = i;
+        break;
+      }
+    }
+
+    if (newRowIndex === -1) {
+      // Column is full, do nothing
+      return;
+    }
+    // If the column is already full, do nothing
+
+    // Update the game board to reflect the player's move
+    const newBoard = [...board];
+    newBoard[newRowIndex][columnIndex] = currentPlayer;
+    setBoard(newBoard);
+
+    // Switch to the other player
+    setCurrentPlayer(currentPlayer === PLAYER_ONE ? PLAYER_TWO : PLAYER_ONE);
+
+    // Exit the loop
   };
 
   return (
@@ -33,16 +63,22 @@ const Board = () => {
         <div className="row" key={rowIndex}>
           {row.map((cell, columnIndex) => (
             <div
-              className="cell"
-              key={columnIndex}
-              onClick={() => handleClick(columnIndex)}
+              className={`cell ${
+                rowIndex && columnIndex
+                  ? currentPlayer === PLAYER_ONE
+                    ? "player-one"
+                    : "player-two"
+                  : ""
+              }`}
+              key={`${rowIndex}-${columnIndex}`}
+              onClick={() => handleClick(columnIndex, rowIndex)}
             >
               {cell}
             </div>
           ))}
         </div>
       ))}
-      <button onClick={clearBoard}> New Game </button>
+      <button onClick={createBoard}> New Game </button>
     </div>
   );
 };
