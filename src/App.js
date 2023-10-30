@@ -20,10 +20,11 @@ function App() {
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>How I built this project</Modal.Title>
+            <Modal.Title>
+              🎮🏆 Overcoming Developer Challenges in Connect 4 🎮🏆
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            🎮🏆 Overcoming Developer Challenges in Connect 4 🎮🏆
             <p>
               1. Creating the game board: I was able to do this by creating 6
               rows and 7 columns and then i used css to design the individual
