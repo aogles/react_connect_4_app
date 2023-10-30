@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
 import Game from "./GamePlay";
 
 const Board = () => {
@@ -80,6 +81,29 @@ const Board = () => {
         }
       }
     }
+    // Check diagonals for a win
+    for (let row = 0; row <= ROWS - 4; row++) {
+      for (let col = 0; col <= COLUMNS - 4; col++) {
+        if (
+          board[row][col] === player &&
+          board[row + 1][col + 1] === player &&
+          board[row + 2][col + 2] === player &&
+          board[row + 3][col + 3] === player
+        ) {
+          alert(currentPlayer + "has won");
+          console.log(currentPlayer, "has won!");
+        }
+        if (
+          board[row][col + 3] === player &&
+          board[row + 1][col + 2] === player &&
+          board[row + 2][col + 1] === player &&
+          board[row + 3][col] === player
+        ) {
+          alert(currentPlayer + "has won");
+          console.log(currentPlayer, "has won!");
+        }
+      }
+    }
   };
 
   return (
@@ -103,7 +127,10 @@ const Board = () => {
           ))}
         </div>
       ))}
-      <button onClick={() => setBoard(createBoard())}> New Game </button>
+      <button className="newGameButton" onClick={() => setBoard(createBoard())}>
+        {" "}
+        New Game{" "}
+      </button>
     </div>
   );
 };

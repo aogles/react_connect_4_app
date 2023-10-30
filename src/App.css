@@ -1,12 +1,14 @@
 .App {
   font-size: 2rem;
-
+  color: rgb(254, 218, 60);
+  font-weight: 600;
   background-image: linear-gradient(
-    rgb(219, 10, 242),
-    rgb(128, 65, 191),
-    rgb(138, 0, 251),
-    rgb(99, 5, 250)
+    rgb(103, 179, 241),
+    rgb(30, 104, 231),
+    rgb(11, 14, 208),
+    rgb(13, 4, 135)
   );
+  text-align: left;
 }
 
 .board {
@@ -14,7 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
+
   border-radius: 10px;
   padding: 10px;
   background-image: linear-gradient(
@@ -37,4 +39,16 @@
   text-align: center;
   font-size: 3rem;
   box-shadow: 2px 2px 4px #000000;
+}
+
+.newGameButton {
+  margin: 2rem;
+  height: 3rem;
+  width: 7rem;
+  border-radius: 10px;
+  background-color: rgb(254, 218, 60);
+  font-size: 14px;
+  box-shadow: 2px 2px 4px #3b3b3b;
+  border: none;
+  font-weight: 550;
 }
